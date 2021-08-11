@@ -10,58 +10,63 @@ User = get_user_model()
 class CashOutSerializer(serializers.ModelSerializer):
     class Meta:
         model = CashOut
-        fields=['date', 'user', 'name', 'payment', 'service', 'company', 'officer', 'transactionid', 'commission', 'salio']
+        fields=['pk','date', 'user', 'name', 'payment', 'service', 'company', 'officer', 'transactionid', 'commission', 'salio']
 
 class CashInSerializer(serializers.ModelSerializer):
     class Meta:
         model = CashIn
-        fields=['date', 'user', 'name', 'officer', 'service', 'company',  'payment', 'transactionid', 'commission', 'salio']
+        fields=['pk', 'date', 'user', 'name', 'officer', 'service', 'company',  'payment', 'transactionid', 'commission', 'salio']
 
 class VoucherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Voucher
-        fields=['date', 'user', 'name', 'officer', 'company', 'service',  'payment', 'transactionid', 'commission', 'salio']
+        fields=['pk','date', 'user', 'name', 'officer', 'company', 'service',  'payment', 'transactionid', 'commission', 'salio']
 class InOfficeSerializer(serializers.ModelSerializer):
     class Meta:
         model = InOffice
-        fields=['date', 'user',  'name', 'amount', 'officer', 'company', 'service', 'transactionid', 'description',]
+        fields=['pk','date', 'user',  'name', 'amount', 'officer', 'company', 'service', 'transactionid', 'description',]
 class OutOfficeSerializer(serializers.ModelSerializer):
     class Meta:
         model = OutOffice
-        fields=['date', 'user',  'name', 'amount', 'officer', 'company', 'service', 'transactionid', 'description',]
+        fields=['pk','date', 'user',  'name', 'amount', 'officer', 'company', 'service', 'transactionid', 'description',]
 class CheckPaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = CheckPayment
-        fields=['date', 'user',  'name', 'amount', 'officer', 'company', 'service', 'transactionid', 'description',]
+        fields=['pk','date', 'user',  'name', 'amount', 'officer', 'company', 'service', 'transactionid', 'description',]
 
 class PendingInSerializer(serializers.ModelSerializer):
     class Meta:
         model = PendingIn
-        fields=['date', 'user',  'name', 'amount', 'officer', 'company', 'service', 'transactionid', 'description',]
+        fields=['pk','date', 'user',  'name', 'amount', 'officer', 'company', 'service', 'transactionid', 'description',]
 class PendingOutSerializer(serializers.ModelSerializer):
     class Meta:
         model = PendingOut
-        fields=['date', 'user',  'name', 'amount', 'officer', 'company', 'service', 'transactionid', 'description',]
+        fields=['pk','date', 'user',  'name', 'amount', 'officer', 'company', 'service', 'transactionid', 'description',]
 class ProcessorsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Processors
-        fields=['date', 'user', 'service_name', 'officer', 'company', 'description',]
+        fields=['pk','date', 'user', 'service_name', 'officer', 'company', 'description',]
 
 class CapitalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Capital
-        fields=['date', 'user', 'amount', 'service_name', 'commission', 'officer', 'company', 'description',]
+        fields=['pk','date', 'user', 'amount', 'service_name', 'commission', 'officer', 'company', 'description',]
 
 
 class BalanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Balance
-        fields=['date', 'user', 'processor', 'amount', 'commission', 'officer', 'company', 'description',]
+        fields=['pk','date', 'user', 'processor', 'amount', 'commission', 'officer', 'company', 'description', 'CRDB', 'DTB', 'MPESA_FLOAT', 'MPESA_ACTIVE', 'TIGOPESA', 'SELCOM', 'HALOPESA', 'TTCL', 'HALOPESA_WAKALA_MKUU', 'TIGOPESA_WAKALA_MKUU', 'EQUITY', 'access_bank', 'KCB', 'AIRTEL_MONEY', 'kilichobaki']
 
 class ClientsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Clients
-        fields=['date', 'user', 'fullname', 'email', 'commission', 'officer', 'service', 'transactionid', 'privillages', 'company', 'Nationality']
+        fields=['pk','date', 'user', 'fullname', 'email', 'commission', 'officer', 'service', 'transactionid', 'privillages', 'company', 'Nationality']
+
+class DeleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Delete
+        fields=['pk','date', 'user',  'section', 'amount', 'commission', 'officer', 'description', 'company', 'status']
 
 
 class UserLoginSerializer(serializers.ModelSerializer):

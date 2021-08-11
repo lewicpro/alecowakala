@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^clients/$', ClientsView.as_view(), name='clients'),
     url(r'^cashout/(?P<company>.+)/$', CashOutView.as_view(), name='cashout'),
     url(r'^clientsdata/(?P<username>.+)/$', ClientpersonalView.as_view(), name='clientsdata'),
+    url(r'^delete/(?P<action>.+)/(?P<pk>.+)/$', DeleteView.as_view(), name='clientsdata'),
     url(r'^cashin/(?P<company>.+)/$', CashInView.as_view(), name='cashin'),
     url(r'^voucher/(?P<company>.+)/$', VoucherView.as_view(), name='voucher'),
     url(r'^inoffice/(?P<company>.+)/$', InOfficeView.as_view(), name='inoffice'),

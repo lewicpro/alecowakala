@@ -60,6 +60,11 @@ class ClientsAdmin(admin.ModelAdmin):
             
     list_display=['date', 'user',  'fullname', 'email', 'commission', 'officer', 'service', 'transactionid', 'privillages', 'company']
 
+class DeleteAdmin(admin.ModelAdmin):
+    search_fields = ('date', 'user',  'section', 'amount', 'commission', 'officer', 'description', 'company', 'status')
+            
+    list_display=['date', 'user',  'section', 'amount', 'commission', 'officer', 'description', 'company', 'status']
+
 admin.site.register(CashOut, CashOutAdmin)
 admin.site.register(CashIn, CashInAdmin)
 admin.site.register(Voucher, VoucherAdmin)
@@ -71,3 +76,4 @@ admin.site.register(PendingOut, PendingOutAdmin)
 admin.site.register(Processors, ProcessorsAdmin)
 admin.site.register(Balance, BalanceAdmin)
 admin.site.register(Clients, ClientsAdmin)
+admin.site.register(Delete, DeleteAdmin)

@@ -84,6 +84,48 @@ class ClientpersonalView(generics.CreateAPIView, generics.ListAPIView):
 		username=self.kwargs['username']
 		return Clients.objects.filter(officer=username).order_by('-pk')
 
+class DeleteView(generics.CreateAPIView, generics.ListAPIView):
+	lookup_field = 'pk'
+	serializer_class = DeleteSerializer
+	permission_classes = [AllowAny]
+
+
+	def get_queryset(self):
+		username=self.kwargs['username']
+		return Delete.objects.filter(officer=username).order_by('-pk')
+
+	def post(self, request, *args, **kwargs):
+		section=self.kwargs['action']
+		pk=self.kwargs['pk']
+		data = request.data
+		serializer = DeleteSerializer(data=data)
+		if serializer.is_valid(raise_exception=True):
+			if section =='cashin':
+				delete=CashIn.objects.filter(pk=pk).delete()
+			if section =='cashout':
+				delete=CashOut.objects.filter(pk=pk).delete()
+			if section =='voucher':
+				delete=Voucher.objects.filter(pk=pk).delete()
+			if section =='inoffice':
+				delete=InOffice.objects.filter(pk=pk).delete()
+			if section =='outoffice':
+				delete=OutOffice.objects.filter(pk=pk).delete()
+			if section =='checkpayment':
+				delete=CheckPayment.objects.filter(pk=pk).delete()
+			if section =='pendingin':
+				delete=PendingIn.objects.filter(pk=pk).delete()
+			if section =='pendingout':
+				delete=PendingOut.objects.filter(pk=pk).delete()
+			if section =='processors':
+				delete=Processors.objects.filter(pk=pk).delete()
+			if section =='capital':
+				delete=Capital.objects.filter(pk=pk).delete()
+			if section =='balance':
+				delete=Balance.objects.filter(pk=pk).delete()
+		
+			mon = serializer.save()
+			return Response(serializer.validated_data)
+
 class CheckPaymentView(generics.CreateAPIView, generics.ListAPIView):
 	lookup_field = 'pk'
 	serializer_class = CheckPaymentSerializer

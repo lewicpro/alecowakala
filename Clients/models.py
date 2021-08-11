@@ -167,8 +167,39 @@ class Balance(models.Model):
     officer=models.CharField(max_length=120, blank=True, null=True)
     description=models.CharField(max_length=120, blank=True, null=True)
     status=models.CharField(max_length=120, blank=True, null=True)
+    CRDB=models.FloatField(blank=True, default=0.00)
+    DTB=models.FloatField(blank=True, default=0.00)
+    MPESA_FLOAT=models.FloatField(blank=True, default=0.00)
+    MPESA_ACTIVE=models.FloatField(blank=True, default=0.00)
+    TIGOPESA=models.FloatField(blank=True, default=0.00)
+    SELCOM=models.FloatField(blank=True, default=0.00)
+    TTCL=models.FloatField(blank=True, default=0.00)
+    HALOPESA=models.FloatField(blank=True, default=0.00)
+    HALOPESA_WAKALA_MKUU=models.FloatField(blank=True, default=0.00)
+    TIGOPESA=models.FloatField(blank=True, default=0.00)
+    TIGOPESA_WAKALA_MKUU=models.FloatField(blank=True, default=0.00)
+    EQUITY=models.FloatField(blank=True, default=0.00)
+    access_bank=models.FloatField(blank=True, default=0.00)
+    KCB=models.FloatField(blank=True, default=0.00)
+    AIRTEL_MONEY=models.FloatField(blank=True, default=0.00)
+    kilichobaki=models.FloatField(blank=True, default=0.00)
+    mkononi=models.FloatField(blank=True, default=0.00)
+    
     class Meta:
-        verbose_name_plural = "Capital remaining"
+        verbose_name_plural = "Capital remaining Balance"
+
+class Delete(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE, max_length=120, blank=True, null=True)
+    date=models.CharField(max_length=120, blank=True, null=True)
+    section=models.CharField(max_length=120, blank=True, null=True)
+    amount=models.CharField(max_length=120, blank=True, null=True)
+    commission=models.CharField(max_length=120, blank=True, null=True)
+    company=models.CharField(max_length=120, blank=True, null=True)
+    officer=models.CharField(max_length=120, blank=True, null=True)
+    description=models.CharField(max_length=120, blank=True, null=True)
+    status=models.CharField(max_length=120, blank=True, null=True)
+    class Meta:
+        verbose_name_plural = "Deleted item"
 
 
     
