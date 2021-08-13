@@ -56,7 +56,7 @@ class CapitalSerializer(serializers.ModelSerializer):
 class BalanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Balance
-        fields=['pk','date', 'user', 'processor', 'amount', 'commission', 'officer', 'company', 'description', 'CRDB', 'DTB', 'MPESA_FLOAT', 'MPESA_ACTIVE', 'TIGOPESA', 'SELCOM', 'HALOPESA', 'TTCL', 'HALOPESA_WAKALA_MKUU', 'TIGOPESA_WAKALA_MKUU', 'EQUITY', 'access_bank', 'KCB', 'AIRTEL_MONEY', 'kilichobaki']
+        fields=['pk','date', 'user', 'processor', 'amount', 'commission', 'officer', 'company', 'description', 'CRDB', 'DTB', 'MPESA_FLOAT', 'MPESA_ACTIVE', 'TIGOPESA', 'SELCOM', 'HALOPESA', 'TTCL', 'HALOPESA_WAKALA_MKUU', 'TIGOPESA_WAKALA_MKUU', 'EQUITY', 'access_bank', 'KCB', 'AIRTEL_MONEY', 'AMANA_BANK', 'MAENDELEO', 'BOA', 'DCB', 'MKOMBOZI', 'NCARD_MACHINE', 'WESTERN_UNION', 'NCARD_CARD', 'NBC', 'NMB', 'TPB', 'ACB','kilichobaki']
 
 class ClientsSerializer(serializers.ModelSerializer):
     class Meta:

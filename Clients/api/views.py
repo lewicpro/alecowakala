@@ -73,6 +73,15 @@ class ClientsView(generics.CreateAPIView, generics.ListAPIView):
 	def get_queryset(self):
 		company=self.kwargs['company']
 		return Clients.objects.filter(company=company).order_by('-pk')
+class MyEmployeeView(generics.CreateAPIView, generics.ListAPIView):
+	lookup_field = 'pk'
+	serializer_class = ClientsSerializer
+	permission_classes = [AllowAny]
+
+
+	def get_queryset(self):
+		company=self.kwargs['company']
+		return Clients.objects.filter(company=company).order_by('-pk')
 
 class ClientpersonalView(generics.CreateAPIView, generics.ListAPIView):
 	lookup_field = 'pk'
@@ -116,13 +125,15 @@ class DeleteView(generics.CreateAPIView, generics.ListAPIView):
 				delete=PendingIn.objects.filter(pk=pk).delete()
 			if section =='pendingout':
 				delete=PendingOut.objects.filter(pk=pk).delete()
-			if section =='processors':
+			if section =='service':
 				delete=Processors.objects.filter(pk=pk).delete()
 			if section =='capital':
 				delete=Capital.objects.filter(pk=pk).delete()
 			if section =='balance':
 				delete=Balance.objects.filter(pk=pk).delete()
-		
+			if section =='clients':
+				delete=Clients.objects.filter(pk=pk).delete()
+			
 			mon = serializer.save()
 			return Response(serializer.validated_data)
 

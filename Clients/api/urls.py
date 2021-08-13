@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^login/$', UserLoginAPIView.as_view(), name='login'),
     url(r'^signup/$', CreateUserView.as_view(), name='signup'),
     url(r'^clients/$', ClientsView.as_view(), name='clients'),
+    url(r'^myemployee/(?P<company>.+)/$', MyEmployeeView.as_view(), name='clients'),
     url(r'^cashout/(?P<company>.+)/$', CashOutView.as_view(), name='cashout'),
     url(r'^clientsdata/(?P<username>.+)/$', ClientpersonalView.as_view(), name='clientsdata'),
     url(r'^delete/(?P<action>.+)/(?P<pk>.+)/$', DeleteView.as_view(), name='clientsdata'),
