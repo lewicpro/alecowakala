@@ -33,6 +33,15 @@ class CashOutView(generics.CreateAPIView, generics.ListAPIView):
 	def get_queryset(self):
 		company=self.kwargs['company']
 		return CashOut.objects.filter(company=company).order_by('-pk')
+class DebtsView(generics.CreateAPIView, generics.ListAPIView):
+	lookup_field = 'pk'
+	serializer_class = DebtsSerializer
+	permission_classes = [AllowAny]
+
+
+	def get_queryset(self):
+		company=self.kwargs['company']
+		return Debts.objects.filter(company=company).order_by('-pk')
 
 class InOfficeView(generics.CreateAPIView, generics.ListAPIView):
 	lookup_field = 'pk'
@@ -133,10 +142,88 @@ class DeleteView(generics.CreateAPIView, generics.ListAPIView):
 				delete=Balance.objects.filter(pk=pk).delete()
 			if section =='clients':
 				delete=Clients.objects.filter(pk=pk).delete()
+			if section =='debts':
+				delete=Debts.objects.filter(pk=pk).delete()
 			
 			mon = serializer.save()
 			return Response(serializer.validated_data)
 
+class ReportCashInView(generics.CreateAPIView, generics.ListAPIView):
+	lookup_field = 'pk'
+	serializer_class = CashInSerializer
+	permission_classes = [AllowAny]
+
+
+	def get_queryset(self):
+		company=self.kwargs['company']
+		value=self.kwargs['value']
+		# if status=='daily':
+		print('imepita ')
+		return CashIn.objects.filter(company=company, service__contains=value).order_by('-pk')
+
+	# def post(self, request, *args, **kwargs):
+	# 	status=self.kwargs['status']
+	# 	compnay=self.kwargs['company']
+	# 	data = request.data
+	# 	serializer = DeleteSerializer(data=data)
+	# 	if serializer.is_valid(raise_exception=True):
+	# 		mon = serializer.save()
+	# 		return Response(serializer.validated_data)
+class ReportCashOutView(generics.CreateAPIView, generics.ListAPIView):
+	lookup_field = 'pk'
+	serializer_class = CashOutSerializer
+	permission_classes = [AllowAny]
+
+
+	def get_queryset(self):
+		company=self.kwargs['company']
+		value=self.kwargs['value']
+		# if status=='daily':
+		print('imepita ')
+		return CashOut.objects.filter(company=company, service__contains=value).order_by('-pk')
+
+class ReportPendingOutView(generics.CreateAPIView, generics.ListAPIView):
+	lookup_field = 'pk'
+	serializer_class = PendingOutSerializer
+	permission_classes = [AllowAny]
+
+
+	def get_queryset(self):
+		company=self.kwargs['company']
+		value=self.kwargs['value']
+		# if status=='daily':
+		print('imepita ')
+		return PendingOut.objects.filter(company=company, service__contains=value).order_by('-pk')
+
+	# def post(self, request, *args, **kwargs):
+	# 	status=self.kwargs['status']
+	# 	compnay=self.kwargs['company']
+	# 	data = request.data
+	# 	serializer = DeleteSerializer(data=data)
+	# 	if serializer.is_valid(raise_exception=True):
+	# 		mon = serializer.save()
+	# 		return Response(serializer.validated_data)
+class ReportPendingInView(generics.CreateAPIView, generics.ListAPIView):
+	lookup_field = 'pk'
+	serializer_class = PendingInSerializer
+	permission_classes = [AllowAny]
+
+
+	def get_queryset(self):
+		company=self.kwargs['company']
+		value=self.kwargs['value']
+		# if status=='daily':
+		print('imepita ')
+		return PendingIn.objects.filter(company=company, service__contains=value).order_by('-pk')
+
+	# def post(self, request, *args, **kwargs):
+	# 	status=self.kwargs['status']
+	# 	compnay=self.kwargs['company']
+	# 	data = request.data
+	# 	serializer = DeleteSerializer(data=data)
+	# 	if serializer.is_valid(raise_exception=True):
+	# 		mon = serializer.save()
+	# 		return Response(serializer.validated_data)
 class CheckPaymentView(generics.CreateAPIView, generics.ListAPIView):
 	lookup_field = 'pk'
 	serializer_class = CheckPaymentSerializer
