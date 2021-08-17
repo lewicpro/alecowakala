@@ -7,6 +7,10 @@ class CashOutAdmin(admin.ModelAdmin):
     search_fields = ('date', 'user', 'name', 'service', 'transactionid', 'commission', 'salio')
             
     list_display=['date', 'user', 'name', 'service', 'transactionid', 'commission', 'salio']
+class DebtsAdmin(admin.ModelAdmin):
+    search_fields = ('date', 'user', 'name', 'service', 'transactionid', 'commission', 'salio')
+            
+    list_display=['date', 'user', 'name', 'service', 'transactionid', 'commission', 'salio']
 
 class VoucherAdmin(admin.ModelAdmin):
     search_fields = ('date', 'user', 'name', 'service', 'transactionid', 'commission', 'salio')
@@ -77,3 +81,4 @@ admin.site.register(Processors, ProcessorsAdmin)
 admin.site.register(Balance, BalanceAdmin)
 admin.site.register(Clients, ClientsAdmin)
 admin.site.register(Delete, DeleteAdmin)
+admin.site.register(Debts, DebtsAdmin)

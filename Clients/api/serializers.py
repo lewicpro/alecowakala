@@ -12,6 +12,11 @@ class CashOutSerializer(serializers.ModelSerializer):
         model = CashOut
         fields=['pk','date', 'user', 'name', 'payment', 'service', 'company', 'officer', 'transactionid', 'commission', 'salio']
 
+class DebtsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Debts
+        fields=['pk','date', 'user', 'name', 'payment', 'service', 'company', 'officer', 'transactionid', 'commission', 'salio']
+
 class CashInSerializer(serializers.ModelSerializer):
     class Meta:
         model = CashIn
