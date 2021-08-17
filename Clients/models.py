@@ -33,6 +33,20 @@ class CashOut(models.Model):
     class Meta:
         verbose_name_plural = "Cash Out"
 
+class Debts(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE, max_length=120, blank=True, null=True)
+    date=models.CharField(max_length=120, blank=True, null=True)
+    name=models.CharField(max_length=120, blank=True, null=True)
+    payment=models.CharField(max_length=120, blank=True, null=True)
+    service=models.CharField(max_length=120, blank=True, null=True)
+    company=models.CharField(max_length=120, blank=True, null=True)
+    transactionid=models.CharField(max_length=120, blank=True, null=True)
+    officer=models.CharField(max_length=120, blank=True, null=True)
+    commission=models.CharField(max_length=120, blank=True, null=True)
+    salio=models.CharField(max_length=120, blank=True, null=True)
+    class Meta:
+        verbose_name_plural = "Debts"
+
 class CashIn(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE, max_length=120, blank=True, null=True)
     date=models.CharField(max_length=120, blank=True, null=True)
