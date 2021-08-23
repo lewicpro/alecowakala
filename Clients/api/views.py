@@ -7,6 +7,7 @@ from django.utils import timezone
 # from .pagination import PostLimitOffsetPagination, PostPageNumberPagination
 from rest_framework import generics
 from rest_framework.views import APIView
+import datetime
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 import os
@@ -233,6 +234,58 @@ class CheckPaymentView(generics.CreateAPIView, generics.ListAPIView):
 	def get_queryset(self):
 		company=self.kwargs['company']
 		return CheckPayment.objects.filter(company=company).order_by('-pk')
+class CheckCashinDate(generics.CreateAPIView, generics.ListAPIView):
+	lookup_field = 'pk'
+	serializer_class = CashInSerializer
+	permission_classes = [AllowAny]
+
+
+	def get_queryset(self):
+
+		company=self.kwargs['company']
+		time=self.kwargs['time']
+		comp=time.split(' ')
+		mime=comp[0]
+		start=datetime.datetime.strptime(mime, '%Y-%m-%d').strftime('%Y-%m-%d %H:%M:%S')
+		return CashIn.objects.filter(date__icontains=mime).order_by('-pk')
+class CheckCashOutDate(generics.CreateAPIView, generics.ListAPIView):
+	lookup_field = 'pk'
+	serializer_class = CashOutSerializer
+	permission_classes = [AllowAny]
+
+
+	def get_queryset(self):
+
+		company=self.kwargs['company']
+		time=self.kwargs['time']
+		comp=time.split(' ')
+		mime=comp[0]
+		start=datetime.datetime.strptime(mime, '%Y-%m-%d').strftime('%Y-%m-%d %H:%M:%S')
+		return CashOut.objects.filter(date__icontains=mime).order_by('-pk')
+class CheckPendingInDate(generics.CreateAPIView, generics.ListAPIView):
+	lookup_field = 'pk'
+	serializer_class = PendingInSerializer
+	permission_classes = [AllowAny]
+
+	def get_queryset(self):
+		company=self.kwargs['company']
+		time=self.kwargs['time']
+		comp=time.split(' ')
+		mime=comp[0]
+		start=datetime.datetime.strptime(mime, '%Y-%m-%d').strftime('%Y-%m-%d %H:%M:%S')
+		return PendingIn.objects.filter(date__icontains=mime).order_by('-pk')
+class CheckPendingOutDate(generics.CreateAPIView, generics.ListAPIView):
+	lookup_field = 'pk'
+	serializer_class = PendingOutSerializer
+	permission_classes = [AllowAny]
+
+	def get_queryset(self):
+		company=self.kwargs['company']
+		time=self.kwargs['time']
+		comp=time.split(' ')
+		mime=comp[0]
+		start=datetime.datetime.strptime(mime, '%Y-%m-%d').strftime('%Y-%m-%d %H:%M:%S')
+		return PendingOut.objects.filter(date__icontains=mime).order_by('-pk')
 
 class PendingInView(generics.CreateAPIView, generics.ListAPIView):
 	lookup_field = 'pk'
